@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ICourse {
 
-    public List<Course> getAllCoursesByID();
+    public List<Course> getAllCoursesByID(int idOriginLang);
+
+    public void insertCourse(int idOriginLang, int idDestLang);
 
 }

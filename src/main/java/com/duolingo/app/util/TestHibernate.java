@@ -27,7 +27,7 @@ public class TestHibernate {
 			System.out.println(l.getIdLanguage() + " // " + l.getNameLanguage());
 		}
 
-		List<Course> courseList = courseImpl.getAllCoursesByID(27);
+		List<Course> courseList = courseImpl.getAllCoursesByID(27, 0);
 		for (Course c: courseList) {
 			System.out.println(c.getIdOriginLang().getCodeLanguage() + " // " + c.getIdDestLang().getCodeLanguage());
 		}

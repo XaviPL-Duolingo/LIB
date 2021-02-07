@@ -11,14 +11,22 @@ import java.util.List;
 public class CourseImpl implements ICourse{
 
     @Override
-    public List<Course> getAllCoursesByID(int idOriginLang) {
+    public List<Course> getAllCoursesByID(int idOriginLang, int idDestLang) {
 
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             t = session.beginTransaction();
 
-            List<Course> courseList = session.createQuery("FROM Course WHERE idOriginLang = " + idOriginLang).list();
+            List<Course> courseList = null;
+
+            if (idOriginLang == 0){
+                courseList = session.createQuery("FROM Course WHERE idDestLang = " + idDestLang).list();
+            }else if (idDestLang == 0){
+                courseList = session.createQuery("FROM Course WHERE idOriginLang = " + idOriginLang).list();
+            }else{
+                courseList = session.createQuery("FROM Course WHERE idOriginLang = " + idOriginLang + " AND idDestLang = " + idDestLang).list();
+            }
 
             return courseList;
 

@@ -28,17 +28,21 @@ public class Level {
 	
 	@Column(name = "isDone")
 	private boolean isDone;
+
+	@Column(name = "codeLevel")
+	private String codeLevel;
 	
 	@OneToMany(mappedBy = "idLevel", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Exercice> exercices;
 	
 	public Level () {}
 
-	public Level(int idLevel, Category idCategory, boolean isDone) {
+	public Level(int idLevel, Category idCategory, boolean isDone, String codeLevel) {
 		super();
 		this.idLevel = idLevel;
 		this.idCategory = idCategory;
 		this.isDone = isDone;
+		this.codeLevel = codeLevel;
 	}
 
 	public int getIdLevel() {
@@ -65,4 +69,11 @@ public class Level {
 		this.isDone = isDone;
 	}
 
+	public String getCodeLevel() {
+		return codeLevel;
+	}
+
+	public void setCodeLevel(String codeLevel) {
+		this.codeLevel = codeLevel;
+	}
 }

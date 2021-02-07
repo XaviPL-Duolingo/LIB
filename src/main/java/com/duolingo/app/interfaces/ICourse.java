@@ -10,4 +10,6 @@ public interface ICourse {
 
     public void insertCourse(int idOriginLang, int idDestLang);
 
+    public Course getCourseByID(int idCourse);
+
 }

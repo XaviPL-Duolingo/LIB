@@ -49,4 +49,23 @@ public class CourseImpl implements ICourse{
         }
 
     }
+
+    @Override
+    public Course getCourseByID(int idCourse) {
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Course c1 = (Course) session.get(Course.class, idCourse);
+
+            if (c1 != null) {
+                return c1;
+            }else {
+                System.out.println("Error: Ha dado NULL...");
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

@@ -55,7 +55,9 @@ public class Category {
 	public void setIdCourse(Course idCourse) {
 		this.idCourse = idCourse;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return categoryName;
+	}
 }

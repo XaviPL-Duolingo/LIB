@@ -56,7 +56,9 @@ public class Course {
 	public void setIdDestLang(Language idDestLang) {
 		this.idDestLang = idDestLang;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return idOriginLang.getNameLanguage() + " == " + idDestLang.getNameLanguage();
+	}
 }

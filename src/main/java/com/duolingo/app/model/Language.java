@@ -62,7 +62,9 @@ public class Language implements Serializable {
 	public void setCodeLanguage(String codeLanguage) {
 		this.codeLanguage = codeLanguage;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return nameLanguage.toUpperCase();
+	}
 }

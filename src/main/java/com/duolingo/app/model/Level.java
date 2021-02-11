@@ -76,4 +76,9 @@ public class Level {
 	public void setCodeLevel(String codeLevel) {
 		this.codeLevel = codeLevel;
 	}
+
+	@Override
+	public String toString() {
+		return codeLevel;
+	}
 }

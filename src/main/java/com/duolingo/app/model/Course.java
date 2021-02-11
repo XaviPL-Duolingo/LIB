@@ -59,6 +59,6 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return idOriginLang.getNameLanguage() + " == " + idDestLang.getNameLanguage();
+		return idOriginLang.getNameLanguage() + " → " + idDestLang.getNameLanguage();
 	}
 }

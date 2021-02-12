@@ -49,7 +49,9 @@ public class TypeExercice {
 	public void setNameTypeExercice(String nameTypeExercice) {
 		this.nameTypeExercice = nameTypeExercice;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return nameTypeExercice;
+	}
 }

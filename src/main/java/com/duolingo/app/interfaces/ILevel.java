@@ -10,4 +10,6 @@ public interface ILevel {
 
     public void insertLevel(int idCategory, String codeLevel);
 
+    public Level getLevelByID(int idLevel);
+
 }

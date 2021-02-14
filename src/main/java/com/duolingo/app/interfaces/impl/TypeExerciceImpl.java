@@ -2,6 +2,7 @@ package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.ITypeExercice;
 import com.duolingo.app.model.Language;
+import com.duolingo.app.model.Level;
 import com.duolingo.app.model.TypeExercice;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
@@ -30,5 +31,25 @@ public class TypeExerciceImpl implements ITypeExercice{
             return listLanguage;
 
         }
+    }
+
+    @Override
+    public TypeExercice getTypeExerciceByID(int idTypeExercice) {
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+
+            TypeExercice te1 = (TypeExercice) session.get(TypeExercice.class, idTypeExercice);
+
+            if (te1 != null) {
+                return te1;
+            }else {
+                System.out.println("Error: Ha dado NULL...");
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

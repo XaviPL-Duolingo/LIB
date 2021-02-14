@@ -3,6 +3,7 @@ package com.duolingo.app.interfaces.impl;
 import com.duolingo.app.interfaces.ILevel;
 import com.duolingo.app.model.Category;
 import com.duolingo.app.model.Course;
+import com.duolingo.app.model.Language;
 import com.duolingo.app.model.Level;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
@@ -47,5 +48,25 @@ public class LevelImpl implements ILevel{
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Level getLevelByID(int idLevel) {
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+
+            Level l1 = (Level) session.get(Level.class, idLevel);
+
+            if (l1 != null) {
+                return l1;
+            }else {
+                System.out.println("Error: Ha dado NULL...");
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

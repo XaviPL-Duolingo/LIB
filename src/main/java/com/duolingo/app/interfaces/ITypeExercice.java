@@ -8,4 +8,6 @@ public interface ITypeExercice {
 
     public List<TypeExercice> getAllTypesExercice();
 
+    public TypeExercice getTypeExerciceByID(int idTypeExercice);
+
 }

@@ -6,10 +6,17 @@ import java.util.List;
 
 public interface IExercice {
 
-    public void createExercice(int idLevel, int idTypeLevel, String[] contentExercice);
+    public void insertTypeTestExercice(int idLevel, String[] contentExercice, boolean isHard);
 
-    public List<Exercice> getAllExercicesByLevelID(int idLevel);
+    public void insertTranslateExercice(int idLevel, String[] contentExercice, boolean isHard, boolean isListen);
+
+    public void insertWordFillExercice(int idLevel, String[] contentExercice, boolean isHard);
+
+    public void insertWordMatchExercice(int idLevel, String[] contentExercice, boolean isHard);
+
+    public List<Exercice> getAllExercicesByID(int idLevel);
 
     public Exercice getExerciceByID(int idExercice);
+
 
 }

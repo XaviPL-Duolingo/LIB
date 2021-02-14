@@ -18,6 +18,9 @@ public class Exercice {
 	@ManyToOne()
 	@JoinColumn(name = "idTypeExercice")
 	private TypeExercice idTypeExercice;
+
+	@Column(name = "contentExercice")
+	private String contentExercice;
 	
 	@Column(name = "isDone")
 	private boolean isDone;
@@ -27,11 +30,12 @@ public class Exercice {
 	
 	public Exercice () {}
 
-	public Exercice(int idExercice, Level idLevel, TypeExercice idTypeExercice, boolean isDone, boolean isHard) {
+	public Exercice(int idExercice, Level idLevel, TypeExercice idTypeExercice, String contentExercice, boolean isDone, boolean isHard) {
 		super();
 		this.idExercice = idExercice;
 		this.idLevel = idLevel;
 		this.idTypeExercice = idTypeExercice;
+		this.contentExercice = contentExercice;
 		this.isDone = isDone;
 		this.isHard = isHard;
 	}
@@ -70,6 +74,14 @@ public class Exercice {
 
 	public boolean isHard() {
 		return isHard;
+	}
+
+	public String getContentExercice() {
+		return contentExercice;
+	}
+
+	public void setContentExercice(String contentExercice) {
+		this.contentExercice = contentExercice;
 	}
 
 	public void setHard(boolean isHard) {

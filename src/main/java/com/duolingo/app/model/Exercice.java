@@ -22,21 +22,17 @@ public class Exercice {
 	@Column(name = "contentExercice")
 	private String contentExercice;
 	
-	@Column(name = "isDone")
-	private boolean isDone;
-	
 	@Column(name = "isHard")
 	private boolean isHard;
 	
 	public Exercice () {}
 
-	public Exercice(int idExercice, Level idLevel, TypeExercice idTypeExercice, String contentExercice, boolean isDone, boolean isHard) {
+	public Exercice(int idExercice, Level idLevel, TypeExercice idTypeExercice, String contentExercice, boolean isHard) {
 		super();
 		this.idExercice = idExercice;
 		this.idLevel = idLevel;
 		this.idTypeExercice = idTypeExercice;
 		this.contentExercice = contentExercice;
-		this.isDone = isDone;
 		this.isHard = isHard;
 	}
 
@@ -64,13 +60,6 @@ public class Exercice {
 		this.idTypeExercice = idTypeExercice;
 	}
 
-	public boolean isDone() {
-		return isDone;
-	}
-
-	public void setDone(boolean isDone) {
-		this.isDone = isDone;
-	}
 
 	public boolean isHard() {
 		return isHard;
@@ -88,4 +77,8 @@ public class Exercice {
 		this.isHard = isHard;
 	}
 
+	@Override
+	public String toString() {
+		return "Ex: ["+idExercice+"] // TypeEx: ["+idTypeExercice.getNameTypeExercice()+"]";
+	}
 }

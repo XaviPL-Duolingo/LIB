@@ -1,6 +1,7 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IExercice;
+import com.duolingo.app.model.Category;
 import com.duolingo.app.model.Exercice;
 import com.duolingo.app.model.TypeExercice;
 import com.duolingo.app.util.HibernateUtil;
@@ -107,11 +108,35 @@ public class ExerciceImpl implements IExercice{
 
     @Override
     public List<Exercice> getAllExercicesByID(int idLevel) {
-        return null;
+
+        Transaction t = null;
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            t = session.beginTransaction();
+
+            List<Exercice> exerciceList = session.createQuery("FROM Exercice WHERE idLevel = " + idLevel).list();
+
+            return exerciceList;
+
+        }
     }
 
     @Override
     public Exercice getExerciceByID(int idExercice) {
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Exercice e1 = (Exercice) session.get(Exercice.class, idExercice);
+
+            if (e1 != null) {
+                return e1;
+            }else {
+                System.out.println("Error: Ha dado NULL...");
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         return null;
     }
 

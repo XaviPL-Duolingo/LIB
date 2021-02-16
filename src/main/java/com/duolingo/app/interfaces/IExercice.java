@@ -1,6 +1,7 @@
 package com.duolingo.app.interfaces;
 
 import com.duolingo.app.model.Exercice;
+import com.duolingo.app.model.WordMatch;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface IExercice {
 
     public void insertWordFillExercice(int idLevel, String[] contentExercice, boolean isHard);
 
-    public void insertWordMatchExercice(int idLevel, String[] contentExercice, boolean isHard);
+    public void insertWordMatchExercice(int idLevel, WordMatch[] contentExercice, boolean isHard);
 
     public List<Exercice> getAllExercicesByID(int idLevel);
 

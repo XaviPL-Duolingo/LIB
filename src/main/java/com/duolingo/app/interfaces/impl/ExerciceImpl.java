@@ -1,9 +1,8 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IExercice;
-import com.duolingo.app.model.Category;
 import com.duolingo.app.model.Exercice;
-import com.duolingo.app.model.TypeExercice;
+import com.duolingo.app.model.WordMatch;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -102,7 +101,34 @@ public class ExerciceImpl implements IExercice{
     }
 
     @Override
-    public void insertWordMatchExercice(int idLevel, String[] contentExercice, boolean isHard) {
+    public void insertWordMatchExercice(int idLevel, WordMatch[] contentExercice, boolean isHard) {
+
+        int i = 1;
+        JSONObject fileJSON = new JSONObject();
+        for (WordMatch wm: contentExercice) {
+            JSONObject wordMatchJSON = new JSONObject();
+            wordMatchJSON.put("word", wm.getWord());
+            wordMatchJSON.put("match", wm.getMatch());
+            fileJSON.put("wordMatch"+i, wordMatchJSON);
+            i++;
+        }
+
+        Exercice exerciceObj = new Exercice();
+        exerciceObj.setIdLevel(levelManager.getLevelByID(idLevel));
+        exerciceObj.setIdTypeExercice(typeExerciceManager.getTypeExerciceByID(5));
+        exerciceObj.setContentExercice(fileJSON.toString(4));
+        exerciceObj.setHard(isHard);
+
+        Transaction t = null;
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            t = session.beginTransaction();
+            session.save(exerciceObj);
+            t.commit();
+            System.out.println("Insertado correctamente!");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
     }
 

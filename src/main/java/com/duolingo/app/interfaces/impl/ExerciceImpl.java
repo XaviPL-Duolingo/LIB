@@ -166,6 +166,11 @@ public class ExerciceImpl implements IExercice{
         return null;
     }
 
+    @Override
+    public JSONObject parseExerciceData(Exercice exerciceObj) {
+        return new JSONObject(exerciceObj.getContentExercice());
+    }
+
     private int checkTypeExercice(int length, boolean isListen){
         int idTypeExercice = 0;
         if (length > 1){

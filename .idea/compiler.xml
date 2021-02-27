@@ -11,6 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="lib" target="7" />
+      <module name="LIB" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>

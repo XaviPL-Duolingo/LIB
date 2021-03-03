@@ -25,6 +25,9 @@ public class User {
 	
 	@Column(name = "xp")
 	private int xp;
+
+	@Column(name = "elo")
+	private int elo;
 	
 	@Column(name = "avatar")
 	private String avatar;
@@ -39,7 +42,7 @@ public class User {
 	
 	public User() {}
 
-	public User(int idUser, String username, String password, String email, int money, int xp, String avatar,
+	public User(int idUser, String username, String password, String email, int money, int xp, int elo, String avatar,
 			Language idOriginLang, Rank idRank) {
 		super();
 		this.idUser = idUser;
@@ -48,6 +51,7 @@ public class User {
 		this.email = email;
 		this.money = money;
 		this.xp = xp;
+		this.elo = elo;
 		this.avatar = avatar;
 		this.idOriginLang = idOriginLang;
 		this.idRank = idRank;
@@ -99,6 +103,14 @@ public class User {
 
 	public void setXp(int xp) {
 		this.xp = xp;
+	}
+
+	public int getElo() {
+		return elo;
+	}
+
+	public void setElo(int elo) {
+		this.elo = elo;
 	}
 
 	public String getAvatar() {

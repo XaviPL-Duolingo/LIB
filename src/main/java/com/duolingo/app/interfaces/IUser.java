@@ -4,9 +4,9 @@ import com.duolingo.app.model.User;
 
 public interface IUser {
 
-    public User getUserData();
+    public User getUserData(int KEYID_USERNAME);
 
-    public void loginUser();
+    public boolean loginUser(String userName, String password);
 
     public void registerUser(String[] userData);
 

@@ -10,14 +10,45 @@ import org.hibernate.Transaction;
 public class UserImpl implements IUser{
 
     @Override
-    public User getUserData() {
+    public User getUserData(int KEYID_USERNAME) {
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+
+            User u1 = (User) session.get(User.class, KEYID_USERNAME);
+
+            if (u1 != null) {
+                return u1;
+            }else {
+                System.out.println("Error: Ha dado NULL...");
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         return null;
     }
 
     @Override
-    public void loginUser() {
+    public boolean loginUser(String userName, String password) {
 
+        Transaction t = null;
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            t = session.beginTransaction();
+
+            Long query = ((Long) session.createQuery("SELECT COUNT(*) FROM User WHERE username = '" + userName + "' AND password = MD5('" + password + "')").uniqueResult());
+            int result = query.intValue();
+            System.out.println(result);
+            if (result == 1){
+                return true;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+            return false;
     }
 
     @Override

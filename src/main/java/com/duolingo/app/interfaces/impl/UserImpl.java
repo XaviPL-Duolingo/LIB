@@ -36,10 +36,8 @@ public class UserImpl implements IUser{
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             t = session.beginTransaction();
-
-            Long query = ((Long) session.createQuery("SELECT COUNT(*) FROM User WHERE username = '" + userName + "' AND password = MD5('" + password + "')").uniqueResult());
+            Long query = ((Long) session.createQuery("SELECT COUNT(*) FROM User WHERE username = '" + userName + "' AND password = '" + password + "'").uniqueResult());
             int result = query.intValue();
-            System.out.println(result);
             if (result == 1){
                 return true;
             }
@@ -52,7 +50,7 @@ public class UserImpl implements IUser{
     }
 
     @Override
-    public void registerUser(String[] userData) {
+    public boolean registerUser(String userName, String email, String pass, int idOriginLang) {
 
         LanguageImpl languageManager = new LanguageImpl();
         RankImpl rankManager = new RankImpl();
@@ -60,10 +58,10 @@ public class UserImpl implements IUser{
         // Datos proporcionados por el usuario
 
         User newUser = new User();
-        newUser.setUsername(userData[0]);
-        newUser.setEmail(userData[1]);
-        newUser.setPassword(userData[2]);
-        newUser.setIdOriginLang(languageManager.getLanguageByID(Integer.parseInt(userData[3])));
+        newUser.setUsername(userName);
+        newUser.setEmail(email);
+        newUser.setPassword(pass);
+        newUser.setIdOriginLang(languageManager.getLanguageByID(idOriginLang));
 
         // Datos por defecto al crear usuario
 
@@ -79,9 +77,13 @@ public class UserImpl implements IUser{
             session.save(newUser);
             t.commit();
             System.out.println("Insertado correctamente!");
+            return true;
 
         }catch(Exception e){
             e.printStackTrace();
         }
+
+        return false;
+
     }
 }

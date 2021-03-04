@@ -8,6 +8,6 @@ public interface IUser {
 
     public boolean loginUser(String userName, String password);
 
-    public void registerUser(String[] userData);
+    public boolean registerUser(String userName, String email, String pass, int idOriginLang);
 
 }

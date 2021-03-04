@@ -1,27 +1,28 @@
 package com.duolingo.app.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "ranks")
-public class Rank {
+public class Rank implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idRank")
 	private int idRank;
-	
+
 	@Column(name = "nameRank")
 	private String nameRank;
-	
+
 	@Column(name = "eloRank")
 	private int eloRank;
-	
+
 	@OneToMany(mappedBy = "idRank", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<User> users;
-	
+
 	public Rank() {}
 
 	public Rank(int idRank, String nameRank, int eloRank) {
@@ -54,7 +55,7 @@ public class Rank {
 	public void setEloRank(int eloRank) {
 		this.eloRank = eloRank;
 	}
-	
-	
-	
+
+
+
 }

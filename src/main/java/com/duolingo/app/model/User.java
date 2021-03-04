@@ -1,46 +1,50 @@
 package com.duolingo.app.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
-public class User {
-	
+public class User implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idUser")
 	private int idUser;
-	
+
 	@Column(name = "username")
 	private String username;
 
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "money")
 	private int money;
-	
+
 	@Column(name = "xp")
 	private int xp;
-	
+
+	@Column(name = "elo")
+	private int elo;
+
 	@Column(name = "avatar")
 	private String avatar;
-	
+
 	@ManyToOne()
 	@JoinColumn(name = "idOriginLang")
 	private Language idOriginLang;
-	
+
 	@ManyToOne()
 	@JoinColumn(name = "idRank")
 	private Rank idRank;
-	
+
 	public User() {}
 
-	public User(int idUser, String username, String password, String email, int money, int xp, String avatar,
-			Language idOriginLang, Rank idRank) {
+	public User(int idUser, String username, String password, String email, int money, int xp, int elo, String avatar,
+				Language idOriginLang, Rank idRank) {
 		super();
 		this.idUser = idUser;
 		this.username = username;
@@ -48,6 +52,7 @@ public class User {
 		this.email = email;
 		this.money = money;
 		this.xp = xp;
+		this.elo = elo;
 		this.avatar = avatar;
 		this.idOriginLang = idOriginLang;
 		this.idRank = idRank;
@@ -101,6 +106,14 @@ public class User {
 		this.xp = xp;
 	}
 
+	public int getElo() {
+		return elo;
+	}
+
+	public void setElo(int elo) {
+		this.elo = elo;
+	}
+
 	public String getAvatar() {
 		return avatar;
 	}
@@ -131,7 +144,7 @@ public class User {
 				+ ", money=" + money + ", xp=" + xp + ", avatar=" + avatar + ", idOriginLang=" + idOriginLang
 				+ ", idRank=" + idRank + "]";
 	}
-	
-	
+
+
 
 }

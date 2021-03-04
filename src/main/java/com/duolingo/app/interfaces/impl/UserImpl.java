@@ -1,26 +1,24 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IUser;
-import com.duolingo.app.model.Language;
 import com.duolingo.app.model.User;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.List;
+
 public class UserImpl implements IUser{
 
     @Override
-    public User getUserData(int KEYID_USERNAME) {
+    public User getUserData(String KEYID_USERNAME) {
+
+        Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
-
-            User u1 = (User) session.get(User.class, KEYID_USERNAME);
-
-            if (u1 != null) {
-                return u1;
-            }else {
-                System.out.println("Error: Ha dado NULL...");
-            }
+            t = session.beginTransaction();
+            List<User> userList = session.createQuery("FROM User WHERE username = '" + KEYID_USERNAME +"'").list();
+            return userList.get(0);
 
         }catch(Exception e){
             e.printStackTrace();
@@ -85,5 +83,15 @@ public class UserImpl implements IUser{
 
         return false;
 
+    }
+
+    @Override
+    public boolean changeProfilePic(String KEY_USER, Object image) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteUser(int KEYID_USERNAME) {
+        return false;
     }
 }

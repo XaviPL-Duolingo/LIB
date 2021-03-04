@@ -21,7 +21,6 @@ public class CourseImpl implements ICourse{
             List<Course> courseList = null;
 
             if (idOriginLang == 0 && idDestLang == 0){
-                System.out.println("payaya");
                 courseList = session.createQuery("FROM Course").list();
             }else if (idOriginLang == 0){
                 courseList = session.createQuery("FROM Course WHERE idDestLang = " + idDestLang).list();

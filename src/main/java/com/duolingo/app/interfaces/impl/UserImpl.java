@@ -59,7 +59,6 @@ public class UserImpl implements IUser{
         newUser.setUsername(userName);
         newUser.setEmail(email);
         newUser.setPassword(pass);
-        newUser.setIdOriginLang(languageManager.getLanguageByID(idOriginLang));
 
         // Datos por defecto al crear usuario
 

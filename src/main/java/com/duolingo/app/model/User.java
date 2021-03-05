@@ -43,8 +43,7 @@ public class User implements Serializable {
 
 	public User() {}
 
-	public User(int idUser, String username, String password, String email, int money, int xp, int elo, String avatar,
-				Language idOriginLang, Rank idRank) {
+	public User(int idUser, String username, String password, String email, int money, int xp, int elo, String avatar, Rank idRank) {
 		super();
 		this.idUser = idUser;
 		this.username = username;
@@ -54,7 +53,6 @@ public class User implements Serializable {
 		this.xp = xp;
 		this.elo = elo;
 		this.avatar = avatar;
-		this.idOriginLang = idOriginLang;
 		this.idRank = idRank;
 	}
 

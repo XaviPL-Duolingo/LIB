@@ -2,6 +2,8 @@ package com.duolingo.app.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -40,6 +42,14 @@ public class User implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name = "idRank")
 	private Rank idRank;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL} )
+	@JoinTable(
+			name = "users_items",
+			joinColumns = { @JoinColumn(name = "idUser") },
+			inverseJoinColumns = { @JoinColumn(name = "idItem") }
+	)
+	private Set<Item> userItems = new HashSet<Item>();
 
 	public User() {}
 
@@ -134,6 +144,14 @@ public class User implements Serializable {
 
 	public void setIdRank(Rank idRank) {
 		this.idRank = idRank;
+	}
+
+	public Set<Item> getUserItems() {
+		return userItems;
+	}
+
+	public void setUserItems(Set<Item> userItems) {
+		this.userItems = userItems;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IUser;
+import com.duolingo.app.model.Rank;
 import com.duolingo.app.model.User;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
@@ -90,7 +91,26 @@ public class UserImpl implements IUser{
     }
 
     @Override
-    public boolean deleteUser(int KEYID_USERNAME) {
+    public List<User> getRanking(int idRank) {
+
+        Transaction t = null;
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            t = session.beginTransaction();
+            List<User> userList = session.createQuery("FROM User WHERE idRank = " + idRank + " ORDER BY elo DESC ").list();
+            return userList;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public boolean deleteUser(String KEYID_USERNAME) {
         return false;
     }
+
+
 }

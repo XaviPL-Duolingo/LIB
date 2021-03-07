@@ -1,6 +1,9 @@
 package com.duolingo.app.interfaces;
 
+import com.duolingo.app.model.Rank;
 import com.duolingo.app.model.User;
+
+import java.util.List;
 
 public interface IUser {
 
@@ -12,6 +15,8 @@ public interface IUser {
 
     public boolean changeProfilePic(String KEY_USER, Object image);
 
-    public boolean deleteUser(int KEYID_USERNAME);
+    public List<User> getRanking(int idRank);
+
+    public boolean deleteUser(String KEYID_USERNAME);
 
 }

@@ -43,13 +43,13 @@ public class User implements Serializable {
 	@JoinColumn(name = "idRank")
 	private Rank idRank;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL} )
 	@JoinTable(
 			name = "users_items",
 			joinColumns = { @JoinColumn(name = "idUser") },
 			inverseJoinColumns = { @JoinColumn(name = "idItem") }
 	)
-	Set<Item> userItems = new HashSet<>();
+	private Set<Item> userItems = new HashSet<Item>();
 	
 	public User() {}
 

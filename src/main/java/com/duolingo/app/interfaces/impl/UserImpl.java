@@ -1,6 +1,7 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IUser;
+import com.duolingo.app.model.Course;
 import com.duolingo.app.model.Item;
 import com.duolingo.app.model.Rank;
 import com.duolingo.app.model.User;
@@ -9,7 +10,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserImpl implements IUser{
 
@@ -22,6 +25,25 @@ public class UserImpl implements IUser{
             t = session.beginTransaction();
             List<User> userList = session.createQuery("FROM User WHERE username = '" + KEYID_USERNAME +"'").list();
             return userList.get(0);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public User getUserByID(int idUser) {
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            User u1 = (User) session.get(User.class, idUser);
+
+            if (u1 != null) {
+                return u1;
+            }else {
+                System.out.println("Error: Ha dado NULL...");
+            }
 
         }catch(Exception e){
             e.printStackTrace();
@@ -110,6 +132,34 @@ public class UserImpl implements IUser{
     }
     @Override
     public boolean deleteUser(String KEYID_USERNAME) {
+        return false;
+    }
+
+    @Override
+    public boolean buyItem(int idUser, int idItem, int price) {
+
+        Transaction t = null;
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            t = session.beginTransaction();
+
+            UserImpl userManager = new UserImpl();
+            User userObj = userManager.getUserByID(idUser);
+
+            ItemImpl itemManager = new ItemImpl();
+            Item itemBought = itemManager.getItemByID(idItem);
+
+            userObj.getUserItems().add(itemBought);
+            userObj.setMoney(userObj.getMoney()-price);
+            session.merge(userObj);
+            t.commit();
+
+            return true;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         return false;
     }
 

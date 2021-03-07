@@ -1,6 +1,7 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IItem;
+import com.duolingo.app.model.Course;
 import com.duolingo.app.model.Item;
 import com.duolingo.app.model.Language;
 import com.duolingo.app.model.Level;
@@ -32,6 +33,25 @@ public class ItemImpl implements IItem{
             return listItem;
 
         }
+    }
+
+    @Override
+    public Item getItemByID(int idItem) {
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            Item i1 = (Item) session.get(Item.class, idItem);
+
+            if (i1 != null) {
+                return i1;
+            }else {
+                System.out.println("Error: Ha dado NULL...");
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     @Override

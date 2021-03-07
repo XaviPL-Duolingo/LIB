@@ -9,6 +9,8 @@ public interface IUser {
 
     public User getUserData(String KEYID_USERNAME);
 
+    public User getUserByID(int idUser);
+
     public boolean loginUser(String userName, String password);
 
     public boolean registerUser(String userName, String email, String pass, int idOriginLang);
@@ -18,5 +20,7 @@ public interface IUser {
     public List<User> getRanking(int idRank);
 
     public boolean deleteUser(String KEYID_USERNAME);
+
+    public boolean buyItem(int idUser, int idItem, int price);
 
 }

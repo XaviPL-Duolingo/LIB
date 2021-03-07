@@ -8,6 +8,8 @@ public interface IItem {
 
     public List<Item> getAllItems();
 
+    public Item getItemByID(int idItem);
+
     public void insertItem(String nameItem, String description, int priceItem);
 
     public void removeItem(int idItem);

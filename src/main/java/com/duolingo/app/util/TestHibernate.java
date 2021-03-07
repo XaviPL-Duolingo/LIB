@@ -1,6 +1,7 @@
 package com.duolingo.app.util;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -14,10 +15,10 @@ public class TestHibernate {
 
 	public static void main(String[] args) {
 
-		UserImpl userList = new UserImpl();
-		User userData = userList.getUserData("Buholingo");
-		System.out.println(userData.getUserItems());
+		UserImpl userManager = new UserImpl();
+		ItemImpl itemManager = new ItemImpl();
 
+		System.out.println(userManager.buyItem(1, 4, 300));
 
 	}
 

@@ -23,7 +23,7 @@ public class Item {
 	private int priceItem;
 
 	@ManyToMany(mappedBy = "userItems")
-	private Set<User> itemsUser = new HashSet<>();
+	private Set<User> itemsUser = new HashSet<User>();
 	
 	public Item() {}
 

@@ -1,11 +1,8 @@
 package com.duolingo.app.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "items")
@@ -24,6 +21,9 @@ public class Item {
 	
 	@Column(name = "priceItem")
 	private int priceItem;
+
+	@ManyToMany(mappedBy = "userItems")
+	private Set<User> itemsUser = new HashSet<>();
 	
 	public Item() {}
 
@@ -65,6 +65,14 @@ public class Item {
 
 	public void setPriceItem(int priceItem) {
 		this.priceItem = priceItem;
+	}
+
+	public Set<User> getItemsUser() {
+		return itemsUser;
+	}
+
+	public void setItemsUser(Set<User> itemsUser) {
+		this.itemsUser = itemsUser;
 	}
 
 	@Override

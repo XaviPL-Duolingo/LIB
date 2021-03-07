@@ -1,12 +1,14 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IUser;
+import com.duolingo.app.model.Item;
 import com.duolingo.app.model.Rank;
 import com.duolingo.app.model.User;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserImpl implements IUser{
@@ -106,7 +108,6 @@ public class UserImpl implements IUser{
 
         return null;
     }
-
     @Override
     public boolean deleteUser(String KEYID_USERNAME) {
         return false;

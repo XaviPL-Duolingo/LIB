@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemImpl implements IItem{
@@ -67,4 +68,5 @@ public class ItemImpl implements IItem{
         }
 
     }
+
 }

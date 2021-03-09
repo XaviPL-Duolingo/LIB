@@ -18,7 +18,7 @@ public class TestHibernate {
 		UserImpl userManager = new UserImpl();
 		ItemImpl itemManager = new ItemImpl();
 
-		System.out.println(userManager.buyItem(1, 4, 300));
+		System.out.println(userManager.buyItem(2, 4));
 
 	}
 

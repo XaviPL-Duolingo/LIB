@@ -136,7 +136,7 @@ public class UserImpl implements IUser{
     }
 
     @Override
-    public boolean buyItem(int idUser, int idItem, int price) {
+    public boolean buyItem(int idUser, int idItem) {
 
         Transaction t = null;
 
@@ -150,7 +150,7 @@ public class UserImpl implements IUser{
             Item itemBought = itemManager.getItemByID(idItem);
 
             userObj.getUserItems().add(itemBought);
-            userObj.setMoney(userObj.getMoney()-price);
+            userObj.setMoney(userObj.getMoney()-itemBought.getPriceItem());
             session.merge(userObj);
             t.commit();
 

@@ -21,6 +21,6 @@ public interface IUser {
 
     public boolean deleteUser(String KEYID_USERNAME);
 
-    public boolean buyItem(int idUser, int idItem, int price);
+    public boolean buyItem(int idUser, int idItem);
 
 }

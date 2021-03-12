@@ -76,9 +76,11 @@ public class LevelImpl implements ILevel{
         Set<Level> userLevels = userObj.getUserLevels();
 
         List<Level> categoryLevels = getAllLevelsByID(idCategory);
-        for (Level l : categoryLevels) {
-            if (!userLevels.contains(l)){
-                return l;
+        if (categoryLevels != null){
+            for (Level l : categoryLevels) {
+                if (!userLevels.contains(l)){
+                    return l;
+                }
             }
         }
 

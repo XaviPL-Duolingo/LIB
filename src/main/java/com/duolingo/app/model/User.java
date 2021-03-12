@@ -51,6 +51,14 @@ public class User implements Serializable {
 	)
 	private Set<Item> userItems = new HashSet<Item>();
 
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL} )
+	@JoinTable(
+			name = "users_levels",
+			joinColumns = { @JoinColumn(name = "idUser") },
+			inverseJoinColumns = { @JoinColumn(name = "idLevel") }
+	)
+	private Set<Level> userLevels = new HashSet<Level>();
+
 	public User() {}
 
 	public User(int idUser, String username, String password, String email, int money, int xp, int elo, String avatar, Rank idRank) {
@@ -152,6 +160,14 @@ public class User implements Serializable {
 
 	public void setUserItems(Set<Item> userItems) {
 		this.userItems = userItems;
+	}
+
+	public Set<Level> getUserLevels() {
+		return userLevels;
+	}
+
+	public void setUserLevels(Set<Level> userLevels) {
+		this.userLevels = userLevels;
 	}
 
 	@Override

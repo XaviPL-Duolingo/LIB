@@ -23,7 +23,7 @@ public class Item implements Serializable {
 	@Column(name = "priceItem")
 	private int priceItem;
 
-	@ManyToMany(mappedBy = "userItems")
+	@ManyToMany(mappedBy = "userLevels")
 	private Set<User> itemsUser = new HashSet<User>();
 
 	public Item() {}

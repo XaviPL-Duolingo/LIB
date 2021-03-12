@@ -1,32 +1,31 @@
 package com.duolingo.app.model;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "exercices")
 public class Exercice implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idExercice")
 	private int idExercice;
-	
+
 	@ManyToOne()
 	@JoinColumn(name = "idLevel")
 	private Level idLevel;
-	
+
 	@ManyToOne()
 	@JoinColumn(name = "idTypeExercice")
 	private TypeExercice idTypeExercice;
 
 	@Column(name = "contentExercice")
 	private String contentExercice;
-	
+
 	@Column(name = "isHard")
 	private boolean isHard;
-	
+
 	public Exercice () {}
 
 	public Exercice(int idExercice, Level idLevel, TypeExercice idTypeExercice, String contentExercice, boolean isHard) {

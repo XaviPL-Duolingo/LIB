@@ -15,10 +15,8 @@ public class TestHibernate {
 
 	public static void main(String[] args) {
 
-		UserImpl userManager = new UserImpl();
-		ItemImpl itemManager = new ItemImpl();
-
-		System.out.println(userManager.buyItem(2, 4));
+		LevelImpl levelManager = new LevelImpl();
+		// Level level = levelManager.getUserNextLevel(1, )
 
 	}
 

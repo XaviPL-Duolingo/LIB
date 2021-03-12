@@ -1,10 +1,12 @@
 package com.duolingo.app.model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "exercices")
-public class Exercice {
+public class Exercice implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

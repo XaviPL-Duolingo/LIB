@@ -12,4 +12,6 @@ public interface ILevel {
 
     public Level getLevelByID(int idLevel);
 
+    public Level getUserNextLevel(int idUser, int idCategory);
+
 }

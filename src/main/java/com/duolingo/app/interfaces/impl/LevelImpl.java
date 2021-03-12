@@ -1,15 +1,13 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.ILevel;
-import com.duolingo.app.model.Category;
-import com.duolingo.app.model.Course;
-import com.duolingo.app.model.Language;
-import com.duolingo.app.model.Level;
+import com.duolingo.app.model.*;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
+import java.util.Set;
 
 public class LevelImpl implements ILevel{
 
@@ -65,6 +63,23 @@ public class LevelImpl implements ILevel{
 
         }catch(Exception e){
             e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public Level getUserNextLevel(int idUser, int idCategory) {
+
+        UserImpl userManager = new UserImpl();
+        User userObj = userManager.getUserByID(idUser);
+        Set<Level> userLevels = userObj.getUserLevels();
+
+        List<Level> categoryLevels = getAllLevelsByID(idCategory);
+        for (Level l : categoryLevels) {
+            if (!userLevels.contains(l)){
+                return l;
+            }
         }
 
         return null;

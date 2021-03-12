@@ -1,21 +1,15 @@
 package com.duolingo.app.model;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "levels")
-public class Level {
+public class Level implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +28,9 @@ public class Level {
 	
 	@OneToMany(mappedBy = "idLevel", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Exercice> exercices;
+
+	@ManyToMany(mappedBy = "userItems")
+	private Set<User> itemsUser = new HashSet<User>();
 	
 	public Level () {}
 
@@ -75,6 +72,22 @@ public class Level {
 
 	public void setCodeLevel(String codeLevel) {
 		this.codeLevel = codeLevel;
+	}
+
+	public List<Exercice> getExercices() {
+		return exercices;
+	}
+
+	public void setExercices(List<Exercice> exercices) {
+		this.exercices = exercices;
+	}
+
+	public Set<User> getItemsUser() {
+		return itemsUser;
+	}
+
+	public void setItemsUser(Set<User> itemsUser) {
+		this.itemsUser = itemsUser;
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public interface IUser {
 
     public List<User> getRanking(int idRank);
 
-    public boolean deleteUser(String KEYID_USERNAME);
+    public boolean deleteUser(int idUser);
 
     public boolean buyItem(int idUser, int idItem);
 

@@ -132,7 +132,19 @@ public class UserImpl implements IUser{
         return null;
     }
     @Override
-    public boolean deleteUser(String KEYID_USERNAME) {
+    public boolean deleteUser(int idUser) {
+
+        Transaction t = null;
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            t = session.beginTransaction();
+            session.delete(getUserByID(idUser));
+            t.commit();
+            return true;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return false;
     }
 

@@ -15,8 +15,10 @@ public class TestHibernate {
 
 	public static void main(String[] args) {
 
-		LevelImpl levelManager = new LevelImpl();
-		// Level level = levelManager.getUserNextLevel(1, )
+		UserImpl userManager = new UserImpl();
+		User userObj = userManager.getUserByID(9);
+		userObj.setMoney(1500);
+		userManager.updateUser(userObj);
 
 	}
 

@@ -8,6 +8,7 @@ import com.duolingo.app.model.User;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -161,6 +162,42 @@ public class UserImpl implements IUser{
         }
 
         return false;
+    }
+
+    @Override
+    public boolean updateUser(User readObject) {
+
+        Transaction t = null;
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            t = session.beginTransaction();
+            session.update(readObject);
+            t.commit();
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    @Override
+    public User parseJSON(String readUTF) {
+
+        RankImpl rankManager = new RankImpl();
+
+        User userObj = new User();
+        JSONObject jsonObject = new JSONObject(readUTF);
+        userObj.setIdUser((int) jsonObject.get("idUser"));
+        userObj.setUsername((String) jsonObject.get("username"));
+        userObj.setPassword((String)jsonObject.get("password"));
+        userObj.setEmail((String)jsonObject.get("email"));
+        userObj.setMoney((int)jsonObject.get("money"));
+        userObj.setXp( (int)jsonObject.get("xp"));
+        userObj.setElo( (int) jsonObject.get("elo"));
+        userObj.setAvatar( (String)jsonObject.get("avatar"));
+        userObj.setIdRank(rankManager.getRankByID((int) jsonObject.get("idRank")));
+        return userObj;
     }
 
 

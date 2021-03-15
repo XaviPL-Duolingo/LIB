@@ -1,5 +1,7 @@
 package com.duolingo.app.model;
 
+import org.json.JSONObject;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -168,6 +170,21 @@ public class User implements Serializable {
 
 	public void setUserLevels(Set<Level> userLevels) {
 		this.userLevels = userLevels;
+	}
+
+	public JSONObject toJSON() {
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("idUser", idUser);
+		jsonObject.put("username", username);
+		jsonObject.put("password", password);
+		jsonObject.put("email", email);
+		jsonObject.put("money", money);
+		jsonObject.put("xp", xp);
+		jsonObject.put("elo", elo);
+		jsonObject.put("avatar", avatar);
+		jsonObject.put("idRank", idRank.getIdRank());
+		return jsonObject;
 	}
 
 	@Override

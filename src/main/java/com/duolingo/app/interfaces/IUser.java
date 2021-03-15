@@ -23,7 +23,7 @@ public interface IUser {
 
     public boolean buyItem(int idUser, int idItem);
 
-    public boolean updateUser(User readObject);
+    public User updateUser(User readObject);
 
     public User parseJSON(String readUTF);
 }

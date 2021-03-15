@@ -165,20 +165,29 @@ public class UserImpl implements IUser{
     }
 
     @Override
-    public boolean updateUser(User readObject) {
+    public User updateUser(User readObject) {
 
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             t = session.beginTransaction();
+
+            if (readObject.getIdRank().getIdRank() != 6){
+                RankImpl rankManager = new RankImpl();
+                Rank nextRank = rankManager.getRankByID(readObject.getIdRank().getIdRank() + 1);
+                if (readObject.getElo() > nextRank.getEloRank()){
+                    readObject.setIdRank(nextRank);
+                }
+            }
+
             session.update(readObject);
             t.commit();
-            return true;
+            return readObject;
         }catch(Exception e){
             e.printStackTrace();
         }
 
-        return false;
+        return null;
     }
 
     @Override

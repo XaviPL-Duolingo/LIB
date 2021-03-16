@@ -1,17 +1,13 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IItem;
-import com.duolingo.app.model.Course;
 import com.duolingo.app.model.Item;
-import com.duolingo.app.model.Language;
-import com.duolingo.app.model.Level;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ItemImpl implements IItem{

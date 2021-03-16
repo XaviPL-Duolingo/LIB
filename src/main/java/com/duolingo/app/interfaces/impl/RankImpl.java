@@ -1,7 +1,6 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IRank;
-import com.duolingo.app.model.Language;
 import com.duolingo.app.model.Rank;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;

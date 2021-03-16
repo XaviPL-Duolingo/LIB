@@ -6,6 +6,7 @@ import com.duolingo.app.model.Language;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 import java.util.List;
 
 public class CourseImpl implements ICourse{

@@ -1,6 +1,5 @@
 package com.duolingo.app.interfaces;
 
-import com.duolingo.app.model.Rank;
 import com.duolingo.app.model.User;
 
 import java.util.List;

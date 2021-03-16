@@ -1,7 +1,6 @@
 package com.duolingo.app.util;
 
 import com.duolingo.app.model.*;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

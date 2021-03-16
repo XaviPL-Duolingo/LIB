@@ -1,15 +1,7 @@
 package com.duolingo.app.util;
 
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-
-import com.duolingo.app.interfaces.impl.*;
-import com.duolingo.app.model.*;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import com.duolingo.app.interfaces.impl.UserImpl;
+import com.duolingo.app.model.User;
 
 public class TestHibernate {
 

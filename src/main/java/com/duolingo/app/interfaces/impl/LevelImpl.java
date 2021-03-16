@@ -1,7 +1,9 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.ILevel;
-import com.duolingo.app.model.*;
+import com.duolingo.app.model.Category;
+import com.duolingo.app.model.Level;
+import com.duolingo.app.model.User;
 import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

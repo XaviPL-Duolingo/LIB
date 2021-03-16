@@ -1,7 +1,6 @@
 package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IUser;
-import com.duolingo.app.model.Course;
 import com.duolingo.app.model.Item;
 import com.duolingo.app.model.Rank;
 import com.duolingo.app.model.User;
@@ -10,10 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class UserImpl implements IUser{
 

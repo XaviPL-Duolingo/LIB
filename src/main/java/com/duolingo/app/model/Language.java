@@ -18,6 +18,9 @@ public class Language implements Serializable {
 	
 	@Column(name = "codeLanguage")
 	private String codeLanguage;
+
+	@Column(name = "flagLanguage")
+	private String flagLanguage;
 	
 	@OneToMany(mappedBy = "idOriginLang", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<User> users;
@@ -60,6 +63,14 @@ public class Language implements Serializable {
 
 	public void setCodeLanguage(String codeLanguage) {
 		this.codeLanguage = codeLanguage;
+	}
+
+	public String getFlagLanguage() {
+		return flagLanguage;
+	}
+
+	public void setFlagLanguage(String flagLanguage) {
+		this.flagLanguage = flagLanguage;
 	}
 
 	@Override

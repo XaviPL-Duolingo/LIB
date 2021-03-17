@@ -21,7 +21,7 @@ public class Category implements Serializable {
 	@JoinColumn(name = "idCourse")
 	private Course idCourse;
 	
-	@OneToMany(mappedBy = "idCategory", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "idCategory", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Level> levels;
 	
 	public Category() {}
@@ -55,6 +55,14 @@ public class Category implements Serializable {
 
 	public void setIdCourse(Course idCourse) {
 		this.idCourse = idCourse;
+	}
+
+	public List<Level> getLevels() {
+		return levels;
+	}
+
+	public void setLevels(List<Level> levels) {
+		this.levels = levels;
 	}
 
 	@Override

@@ -1,14 +1,13 @@
 package com.duolingo.app.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "languages")
 public class Language implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idLanguage")
@@ -16,22 +15,25 @@ public class Language implements Serializable {
 
 	@Column(name = "nameLanguage")
 	private String nameLanguage;
-	
+
 	@Column(name = "codeLanguage")
 	private String codeLanguage;
-	
+
+	@Column(name = "flagLanguage")
+	private String flagLanguage;
+
 	@OneToMany(mappedBy = "idOriginLang", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<User> users;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumns({
-		@JoinColumn(name = "idOriginLang", referencedColumnName="idLanguage"),
-		@JoinColumn(name = "idDestLang", referencedColumnName="idLanguage")
+			@JoinColumn(name = "idOriginLang", referencedColumnName="idLanguage"),
+			@JoinColumn(name = "idDestLang", referencedColumnName="idLanguage")
 	})
 	private List<Course> courses;
 
 	public Language() {}
-	
+
 	public Language(int idLanguage, String nameLanguage, String codeLanguage) {
 		super();
 		this.idLanguage = idLanguage;
@@ -61,6 +63,14 @@ public class Language implements Serializable {
 
 	public void setCodeLanguage(String codeLanguage) {
 		this.codeLanguage = codeLanguage;
+	}
+
+	public String getFlagLanguage() {
+		return flagLanguage;
+	}
+
+	public void setFlagLanguage(String flagLanguage) {
+		this.flagLanguage = flagLanguage;
 	}
 
 	@Override

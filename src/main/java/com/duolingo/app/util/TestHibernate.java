@@ -10,7 +10,13 @@ public class TestHibernate {
 	public static void main(String[] args) {
 
 		LevelImpl levelManager = new LevelImpl();
-		Level levelObj = levelManager.getUserNextLevel(8, 15);
+		Level levelObj = levelManager.getUserNextLevel(1, 15);
+		System.out.println(levelObj.toString());
+
+		UserImpl userManager = new UserImpl();
+		User isDone = userManager.completeLevel(1, 14);
+
+		levelObj = levelManager.getUserNextLevel(1, 15);
 		System.out.println(levelObj.toString());
 
 	}

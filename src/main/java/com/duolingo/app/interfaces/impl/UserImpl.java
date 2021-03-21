@@ -2,6 +2,7 @@ package com.duolingo.app.interfaces.impl;
 
 import com.duolingo.app.interfaces.IUser;
 import com.duolingo.app.model.Item;
+import com.duolingo.app.model.Level;
 import com.duolingo.app.model.Rank;
 import com.duolingo.app.model.User;
 import com.duolingo.app.util.HibernateUtil;
@@ -233,20 +234,43 @@ public class UserImpl implements IUser{
         // Método auxiliar para parsear los datos del USER en formato JSON
 
         RankImpl rankManager = new RankImpl();
-
-        User userObj = new User();
         JSONObject jsonObject = new JSONObject(readUTF);
-        userObj.setIdUser((int) jsonObject.get("idUser"));
-        userObj.setUsername((String) jsonObject.get("username"));
-        userObj.setPassword((String)jsonObject.get("password"));
-        userObj.setEmail((String)jsonObject.get("email"));
+
+        User userObj = getUserByID(jsonObject.getInt("idUser"));
         userObj.setMoney((int)jsonObject.get("money"));
         userObj.setXp( (int)jsonObject.get("xp"));
         userObj.setElo( (int) jsonObject.get("elo"));
-        userObj.setAvatar( (String)jsonObject.get("avatar"));
-        userObj.setIdRank(rankManager.getRankByID((int) jsonObject.get("idRank")));
         return userObj;
     }
 
 
+    @Override
+    public User completeLevel(int idUser, int idLevel) {
+
+        System.out.println(idUser + " " + idLevel);
+
+        Transaction t = null;
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            t = session.beginTransaction();
+
+            UserImpl userManager = new UserImpl();
+            User userObj = userManager.getUserByID(idUser);
+
+            LevelImpl levelManager = new LevelImpl();
+            Level levelDone = levelManager.getLevelByID(idLevel);
+
+            userObj.getUserLevels().add(levelDone);
+            session.merge(userObj);
+            t.commit();
+
+            return userObj;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
 }

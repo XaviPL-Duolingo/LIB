@@ -8,6 +8,7 @@ import com.duolingo.app.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -92,12 +93,26 @@ public class LevelImpl implements ILevel{
         User userObj = userManager.getUserByID(idUser);
         Set<Level> userLevels = userObj.getUserLevels();
 
+        int n = userLevels.size();
+        List<Level> userLevelsList = new ArrayList<Level>(n);
+        for (Level x : userLevels){
+            userLevelsList.add(x);
+        }
+
         List<Level> categoryLevels = getAllLevelsByID(idCategory);
         if (categoryLevels != null){
-            for (Level l : categoryLevels) {
-                if (!userLevels.contains(l)){
-                    return l;
+            for (int i = 0; i < categoryLevels.size(); i++){
+                boolean isDone = false;
+                for (int j = 0; j < userLevelsList.size(); j++){
+                    if (categoryLevels.get(i).getIdLevel() == userLevelsList.get(j).getIdLevel()){
+                        isDone = true;
+                    }
                 }
+
+                if (!isDone){
+                    return categoryLevels.get(i);
+                }
+
             }
         }
 

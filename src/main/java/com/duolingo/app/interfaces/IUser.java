@@ -25,4 +25,6 @@ public interface IUser {
     public User updateUser(User readObject);
 
     public User parseJSON(String readUTF);
+
+    public User completeLevel(int idUser, int idLevel);
 }

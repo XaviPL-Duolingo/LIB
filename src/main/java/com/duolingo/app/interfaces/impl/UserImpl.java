@@ -16,6 +16,9 @@ public class UserImpl implements IUser{
     @Override
     public User getUserData(String KEYID_USERNAME) {
 
+        // getUserData()
+        // Obtiene y pasa en forma de objeto todos los datos del usuario que tenga como nombre = "KEYID_USERNAME"
+
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
@@ -32,6 +35,9 @@ public class UserImpl implements IUser{
 
     @Override
     public User getUserByID(int idUser) {
+
+        // getUserByID()
+        // Obtiene el USER con la ID proporcionada en forma de objeto.
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             User u1 = (User) session.get(User.class, idUser);
@@ -52,6 +58,10 @@ public class UserImpl implements IUser{
     @Override
     public boolean loginUser(String userName, String password) {
 
+        // loginUser()
+        // Consulta a la DB si hay coinciencias con el USERNAME y la PASSWORD proporcionadas, si el resultado es de 1
+        // se deuvleve TRUE (el login es correcto), si no hay resultados se devuelve FALSE
+
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -71,6 +81,9 @@ public class UserImpl implements IUser{
 
     @Override
     public boolean registerUser(String userName, String email, String pass, int idOriginLang) {
+
+        // registerUser()
+        // Crea y añade un nuevo USER a la DB con los datos proporcionados, los datos ya vienen verificados.
 
         LanguageImpl languageManager = new LanguageImpl();
         RankImpl rankManager = new RankImpl();
@@ -114,6 +127,9 @@ public class UserImpl implements IUser{
     @Override
     public List<User> getRanking(int idRank) {
 
+        // getRanking()
+        // Obtiene todos los USER que tengan el mismo RANK que el solicitante, se utiliza para el RANKING de la APP.
+
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
@@ -129,6 +145,9 @@ public class UserImpl implements IUser{
     }
     @Override
     public boolean deleteUser(int idUser) {
+
+        // deleteUser()
+        // Elimina de la DB el USER que tenga la ID proporcionada.
 
         Transaction t = null;
 
@@ -146,6 +165,11 @@ public class UserImpl implements IUser{
 
     @Override
     public boolean buyItem(int idUser, int idItem) {
+
+        // buyItem()
+        // Añade a la DB el registro que el USER con la ID proporcionada ha comprado el ITEM con la ID proporcionada
+        // y resta de la cuenta del usuario el valor del item comprado. Si ha salido bien devuelve TRUE, si ha fallado
+        // algo devuelve FALSE y se aborta.
 
         Transaction t = null;
 
@@ -175,6 +199,10 @@ public class UserImpl implements IUser{
     @Override
     public User updateUser(User readObject) {
 
+        // updateUser()
+        // Actualiza los datos del USER que se haya pasado como parametro. Ademas se comprueba si puede ascender
+        // de rango, se utiliza al finalizar un EXERCIE.
+
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
@@ -200,6 +228,9 @@ public class UserImpl implements IUser{
 
     @Override
     public User parseJSON(String readUTF) {
+
+        // parseJSON()
+        // Método auxiliar para parsear los datos del USER en formato JSON
 
         RankImpl rankManager = new RankImpl();
 

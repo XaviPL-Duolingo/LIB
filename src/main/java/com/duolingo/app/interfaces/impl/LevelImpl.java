@@ -15,6 +15,10 @@ public class LevelImpl implements ILevel{
 
     @Override
     public List<Level> getAllLevelsByID(int idCategory) {
+
+        // getAllLevelsByID()
+        // Obtiene todos los LEVELS de la CATEGORY con la ID proporcionada.
+
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -29,6 +33,9 @@ public class LevelImpl implements ILevel{
 
     @Override
     public void insertLevel(int idCategory, String codeLevel) {
+
+        // insertLevel()
+        // Añade un nuevo LEVEL a la DB con el codigo proporcionado a la CATEGORY con la ID proporcionada
 
         CategoryImpl categoryImpl = new CategoryImpl();
         Category categoryObj = categoryImpl.getCategoryByID(idCategory);
@@ -53,6 +60,9 @@ public class LevelImpl implements ILevel{
     @Override
     public Level getLevelByID(int idLevel) {
 
+        // getLevelByID()
+        // Devuevle solo 1 LEVEL que tenga la ID proporcionada en forma de objeto.
+
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
 
             Level l1 = (Level) session.get(Level.class, idLevel);
@@ -72,6 +82,11 @@ public class LevelImpl implements ILevel{
 
     @Override
     public Level getUserNextLevel(int idUser, int idCategory) {
+
+        // getUserNextLevel()
+        // Según la ID del USER y la ID de la CATEGORY comprueba todos los LEVELS que el usuario
+        // haya completado y todos los LEVELS disponibles para esa CATEGORY, devuelve el primer LEVEL que no
+        // haya completado el usuario.
 
         UserImpl userManager = new UserImpl();
         User userObj = userManager.getUserByID(idUser);

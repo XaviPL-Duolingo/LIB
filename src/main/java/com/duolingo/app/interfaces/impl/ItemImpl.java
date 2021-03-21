@@ -15,6 +15,9 @@ public class ItemImpl implements IItem{
     @Override
     public List<Item> getAllItems() {
 
+        // getAllItems()
+        // Obtiene todos los ITEMS de la DB
+
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
@@ -33,6 +36,9 @@ public class ItemImpl implements IItem{
 
     @Override
     public Item getItemByID(int idItem) {
+
+        // getItemByID()
+        // Obtiene el ITEM que tenga de ID el valor proporcionado en forma de objeto.
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             Item i1 = (Item) session.get(Item.class, idItem);
@@ -53,6 +59,9 @@ public class ItemImpl implements IItem{
     @Override
     public void insertItem(String nameItem, String description, int priceItem) {
 
+        // insertItem()
+        // Añade un nuevo ITEM a la DB con los datos proporcionados por el usuario.
+
         Item itemObj = new Item();
         itemObj.setNameItem(nameItem);
         itemObj.setDescription(description);
@@ -72,6 +81,9 @@ public class ItemImpl implements IItem{
 
     @Override
     public void removeItem(int idItem) {
+
+        // removeItem()
+        // Elimina de la DB el ITEM que tenga la ID proporcionada.
 
         Transaction t = null;
         try(Session session = HibernateUtil.getSessionFactory().openSession()){

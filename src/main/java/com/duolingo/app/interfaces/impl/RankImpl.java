@@ -10,6 +10,9 @@ public class RankImpl implements IRank{
     @Override
     public Rank getRankByID(int idRank) {
 
+        // getRankByID()
+        // Devuelve solo 1 RANK que tenga la ID proprocionada en forma de objeto.
+
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
 
             Rank r1 = (Rank) session.get(Rank.class, idRank);

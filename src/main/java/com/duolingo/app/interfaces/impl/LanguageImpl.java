@@ -15,6 +15,9 @@ public class LanguageImpl implements ILanguage{
     @Override
     public List<Language> getAllLanguages() {
 
+        // getAllLanguages()
+        // Obtiene todos los LANGUAGES de la DB.
+
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
@@ -33,6 +36,9 @@ public class LanguageImpl implements ILanguage{
 
     @Override
     public Language getLanguageByID(int idLanguage) {
+
+        // getLanguageByID()
+        // Obtiene el LANGUAGE que tenga de ID el valor proporcionado y lo pasa en forma de objeto.
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
 

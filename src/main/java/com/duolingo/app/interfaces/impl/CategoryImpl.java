@@ -14,6 +14,9 @@ public class CategoryImpl implements ICategory{
     @Override
     public List<Category> getAllCategoriesByID(int idCourse) {
 
+        // getAllCategoriesByID()
+        // Obtiene todas las CATEGORIES mediante la ID de un COURSE
+
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -28,6 +31,9 @@ public class CategoryImpl implements ICategory{
 
     @Override
     public void insertCategory(int courseID, String name) {
+
+        // insertCategory()
+        // Añade una nueva CATEGORY con el nombre proporcionado al COURSE que tenga la ID proporcionada.
 
         CourseImpl courseImpl = new CourseImpl();
         Course courseObj = courseImpl.getCourseByID(courseID);
@@ -51,6 +57,9 @@ public class CategoryImpl implements ICategory{
 
     @Override
     public Category getCategoryByID(int idCategory) {
+
+        // getCategoryByID()
+        // Obtiene la CATEGORY con la ID proporcionada en forma de objecto.
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             Category c1 = (Category) session.get(Category.class, idCategory);

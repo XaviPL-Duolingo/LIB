@@ -14,6 +14,10 @@ public class CourseImpl implements ICourse{
     @Override
     public List<Course> getAllCoursesByID(int idOriginLang, int idDestLang) {
 
+        // getAllCoursesByID()
+        // Obtiene todas los COURSES mediante las ID de los LANGUAGES propocionados, siendo el primero
+        // el language de origen y el segundo el de destino. Si una de las 2 ID es = 0 se interpreta como ALL
+
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -39,6 +43,9 @@ public class CourseImpl implements ICourse{
     @Override
     public void insertCourse(int idOriginLang, int idDestLang) {
 
+        // insertCourse()
+        // Añade un nuevo COURSE con las ID de los LANGUAGES proporcionadas.
+
         LanguageImpl languageImpl = new LanguageImpl();
 
         Language originLang = languageImpl.getLanguageByID(idOriginLang);
@@ -63,6 +70,9 @@ public class CourseImpl implements ICourse{
 
     @Override
     public Course getCourseByID(int idCourse) {
+
+        // getCourseByID()
+        // Obtiene solo 1 COURSE con la ID proporcionada y la pasa como objeto.
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             Course c1 = (Course) session.get(Course.class, idCourse);

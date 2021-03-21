@@ -15,6 +15,9 @@ public class TypeExerciceImpl implements ITypeExercice{
     @Override
     public List<TypeExercice> getAllTypesExercice() {
 
+        // getAllTypesExercice()
+        // Devuelve todos los TypeExercice de la DB.
+
         Transaction t = null;
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
@@ -33,6 +36,9 @@ public class TypeExerciceImpl implements ITypeExercice{
 
     @Override
     public TypeExercice getTypeExerciceByID(int idTypeExercice) {
+
+        // getTypeExerciceByID()
+        // Obtiene solo 1 TypeExercice que tenga la ID proporcionada en forma de objeto.
 
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
 

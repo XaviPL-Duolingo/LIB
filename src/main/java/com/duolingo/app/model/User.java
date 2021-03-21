@@ -176,14 +176,9 @@ public class User implements Serializable {
 
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("idUser", idUser);
-		jsonObject.put("username", username);
-		jsonObject.put("password", password);
-		jsonObject.put("email", email);
 		jsonObject.put("money", money);
 		jsonObject.put("xp", xp);
 		jsonObject.put("elo", elo);
-		jsonObject.put("avatar", avatar);
-		jsonObject.put("idRank", idRank.getIdRank());
 		return jsonObject;
 	}
 

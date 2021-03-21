@@ -173,7 +173,7 @@ public class ExerciceImpl implements IExercice{
 
     private int checkTypeExercice(int length, boolean isListen){
         int idTypeExercice = 0;
-        if (length > 1){
+        if (length > 2){
             if (isListen){
                 idTypeExercice = 4;
             }else{

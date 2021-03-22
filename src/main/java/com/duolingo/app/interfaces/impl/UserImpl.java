@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.json.JSONObject;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class UserImpl implements IUser{
@@ -77,7 +78,7 @@ public class UserImpl implements IUser{
             e.printStackTrace();
         }
 
-            return false;
+        return false;
     }
 
     @Override
@@ -271,6 +272,27 @@ public class UserImpl implements IUser{
         }
 
         return null;
+
+    }
+
+    @Override
+    public int getUserProgressOnCategory(int idUser, int idCategory) {
+
+        Transaction t = null;
+
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            t = session.beginTransaction();
+            BigInteger query = (BigInteger) session.createNativeQuery("SELECT COUNT(idUser) FROM users_levels ul " +
+                    "JOIN levels l ON ul.idLevel = l.idLevel " +
+                    "JOIN categories c ON l.idCategory = c.idCategory " +
+                    "WHERE ul.idUser = " + idUser + " AND c.idCategory = " + idCategory).uniqueResult();
+
+            return query.intValue();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return 0;
 
     }
 }

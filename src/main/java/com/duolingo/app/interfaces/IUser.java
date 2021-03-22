@@ -27,4 +27,6 @@ public interface IUser {
     public User parseJSON(String readUTF);
 
     public User completeLevel(int idUser, int idLevel);
+
+    public int getUserProgressOnCategory(int idUser, int idCategory);
 }
